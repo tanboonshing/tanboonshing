@@ -13,9 +13,9 @@ shinyUI(
     # TASK 2: Add first fluidRow to select input for country
     fluidRow(
       column(12, 
-             wellPanel(selectInput("United-States", "Canada", "Mexico", "Germany", "Philippines"))  # add select input 
+             wellPanel(selectInput(inputId = "country", label = "Country:", choices = c("United-States", "Canada", "Mexico", "Germany", "Philippines"))  # add select input 
              )
-    ),
+    )),
     
     # TASK 3: Add second fluidRow to control how to plot the continuous variables
     fluidRow(
@@ -23,9 +23,9 @@ shinyUI(
              wellPanel(
                p("Select a continuous variable and graph type (histogram or boxplot) to view on the right."),
                radioButtons("continuous_variable",
-               choicesNames = list ("age", "hours_per_week")  # add radio buttons for continuous variables
+                            "choiceNames", list("age", "hours_per_week")),   # add radio buttons for continuous variables
                radioButtons("graph_type",
-               choicesNames = list ("histogram", "box_plot")  # add radio buttons for chart type
+                            "choiceNames", list("histogram", "boxplot"))    # add radio buttons for chart type
                )
              ),
       column(9, plotOutput("p1"))  # add plot output
@@ -37,12 +37,9 @@ shinyUI(
              wellPanel(
                p("Select a categorical variable to view bar chart on the right. Use the check box to view a stacked bar chart to combine the income levels into one graph. "),
                radioButtons("categorical_variable",
-               choicesNames = list ("education", "workclass", "sex")  # add radio buttons for continuous variables
+                            "choiceNames", list("education", "workclass", "sex")),    # add radio buttons for categorical variables
                radioButtons("is_stacked",
-               choiceVALUES = list ("TRUE", "FALSE")  # add radio buttons for chart type
-             )
-      ),    # add radio buttons for categorical variables
-               ...     # add check box input for stacked bar chart option
+                            "choiceValues", list("FALSE" , "TRUE"))     # add check box input for stacked bar chart option
                )
              ),
       column(9, plotOutput("p2"))  # add plot output
