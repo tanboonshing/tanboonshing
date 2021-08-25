@@ -1,6 +1,7 @@
 # Load libraries
 library(shiny)
 library(tidyverse)
+library(ggthemes)
 
 # Read in data
 adult <- read_csv("adult.csv")
