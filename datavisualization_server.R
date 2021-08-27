@@ -41,13 +41,13 @@ shinyServer(function(input, output) {
     # Bar chart
     p <- ggplot(df_country(), aes_string(x = input$categorical_variable)) +
       labs(y = "Number of People", title = paste("Trend of ", input$categorical_variable)) +  # labels
-      theme(axis.title.x=element_text (angle=45), legend.position="bottom")    # modify theme to change text angle and legend position
+      theme(axis.title.x=element_text(angle=45, hjust=1))    # modify theme to change text angle and legend position
     
     if (input$is_stacked) {
-      p + geom_bar() + aes_string(fill = ~prediction)  # add bar geom and use prediction as fill
+      p + geom_bar(aes(fill = prediction))  # add bar geom and use prediction as fill
     }
     else{
-      p + geom_bar() + aes_string(fill = ~input$categorical_variables) # add bar geom and use input$categorical_variables as fill 
+      p + geom_bar(aes(fill = input$categorical_variables)) # add bar geom and use input$categorical_variables as fill 
       facet_wrap(~prediction)   # facet by prediction
     }
   })
